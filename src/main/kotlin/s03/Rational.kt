@@ -1,5 +1,7 @@
 package s03
 
+// *** OPERATOR OVERLOADING AND INTERFACES
+
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
@@ -82,6 +84,7 @@ class Rational(num: Int, denom: Int): Comparable<Rational> {
     fun toDouble() =
         numerator.toDouble() / denominator.toDouble()
 
+    // *** WHEN CLAUSE
     // Comparing.
     override operator fun compareTo(other: Rational): Int = when {
         toDouble() - other.toDouble() < 0 -> -1
@@ -109,6 +112,7 @@ class Rational(num: Int, denom: Int): Comparable<Rational> {
         // Check that they are the same class.
         if (javaClass != other?.javaClass) return false
 
+        // *** COMPILER CASTING
         // Compiler not know that other is Rational, so tell compiler to treat other as Rational.
         other as Rational
         return numerator == other.numerator && denominator == other.denominator
@@ -119,6 +123,7 @@ class Rational(num: Int, denom: Int): Comparable<Rational> {
     }
 
     companion object {
+        // *** TAIL RECURSIVE FUNCTIONS
         // Tail recursive function to find the greatest common denominator of two integers.
         private tailrec fun gcd(a: Int, b: Int): Int =
             if (b == 0)
