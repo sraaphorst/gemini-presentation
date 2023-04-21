@@ -1,4 +1,4 @@
-package s04
+package s02
 
 // *** Nullability
 
@@ -26,6 +26,7 @@ val clients = listOf(
 )
 
 fun main() {
+    // *** LAMBDA EXPRESSIONS
     // Find any pets that are not legal in Hawaii.
     clients
         .filterNot { it.species.legalInHawaii }
