@@ -6,6 +6,6 @@ Presentation on Kotlin basics for my fellow team members.
 * [Kotlin (Scala, Clojure, etc). The non-decaffeinated Java.](src/main/kotlin/s01)
 * [Lambdas and Nullability](src//main/src/kotlin/s02)
 * [Pimping Functions, Generators, Memoization](src/main/kotlin/s03)
-* [Battle Royale: Immutability Rocks](src//main/kotlin/s04)
+* [Battle Royale: Immutability Rocks](src/main/kotlin/s04)
 
 Fin.
