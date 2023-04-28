@@ -1,11 +1,11 @@
 package s03
 
-// *** OPERATOR OVERLOADING AND INTERFACES
+// *** OPERATOR OVERLOADING, CLASS PIMPING, AND INTERFACES
 
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
-// Representation of a rational number.
+// Representation of a rational number. Note no "val" here, so num and denom are not stored.
 class Rational(num: Int, denom: Int): Comparable<Rational> {
     // Secondary constructor: for integers.
     constructor(num: Int): this(num, 1)
@@ -16,7 +16,8 @@ class Rational(num: Int, denom: Int): Comparable<Rational> {
             throw IllegalArgumentException("Denominator cannot be zero.")
     }
 
-    // Initialize the member variables.
+    // Initialize the actual member variables.
+    // We want any negative signs on the numerator, and we want the reduced fraction.
     val numerator = denom.sign * num / gcd(num, denom).absoluteValue
     val denominator = denom.absoluteValue / gcd(num, denom).absoluteValue
 
@@ -39,7 +40,7 @@ class Rational(num: Int, denom: Int): Comparable<Rational> {
 //    operator fun plus(n: Int) =
 //        Rational(numerator + n * denominator, denominator)
 
-    // Using pimping:
+    // Using pimping. See below.
     operator fun plus(n: Int) =
         this + n.toRational()
 
@@ -102,9 +103,15 @@ class Rational(num: Int, denom: Int): Comparable<Rational> {
         else
             numerator
 
+    // Not a data class, so we do not get:
+    // 1. toString
+    // 2. equals
+    // 3. hashCode
+    // for free.
     override fun toString(): String =
         "$numerator/$denominator"
 
+    // Compiler type information.
     override fun equals(other: Any?): Boolean {
         // Check if they reference the same object.
         if (this === other) return true
@@ -113,7 +120,7 @@ class Rational(num: Int, denom: Int): Comparable<Rational> {
         if (javaClass != other?.javaClass) return false
 
         // *** COMPILER CASTING
-        // Compiler not know that other is Rational, so tell compiler to treat other as Rational.
+        // Compiler does not know that other is Rational, so tell compiler to treat other as Rational.
         other as Rational
         return numerator == other.numerator && denominator == other.denominator
     }
