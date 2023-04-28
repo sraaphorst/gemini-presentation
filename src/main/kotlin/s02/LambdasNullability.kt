@@ -23,7 +23,7 @@ data class Client(
 
 
 // *** Small database of pets with their primary staff member.
-val clients = listOf(
+val clients = listOf<Client>(
     Client("Jen Miller",          "Purri",    Species.CAT,    4),
     Client("Sebastian Raaphorst", "Duncan",   Species.CAT,   13),
     Client("Sebastian Raaphorst", "Kali",     Species.CAT,    6),
@@ -40,7 +40,7 @@ fun main() {
     // Methods that can be null are called with ?. and only execute if the left-hand expression is not null.
     // ?: is called the ELVIS OPERATOR and if the LHS is null, it executes the RHS.
     firstPet?.apply {
-        val (petOwner, petName, species, age) = clients.first()
+        val (petOwner, petName, species, age) = firstPet
         println("First pet: $petName (as owned by $petOwner) is a $age year old ${species.name}.")
     } ?: println("There is no first client.")
     println()

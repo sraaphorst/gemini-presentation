@@ -1,8 +1,9 @@
 package s03
 
 // *** MEMOIZATION
-// An object that caches factorial values.
+// An singleton object that caches factorial values.
 private object Factorial {
+    // Cannot change the reference cache, but we can change the data contained in the container.
     private val cache = mutableMapOf(0 to 1L)
 
     fun apply(n: Int): Long = when {
